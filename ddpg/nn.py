@@ -52,7 +52,7 @@ class Actor(nn.Module):
         self.encoder_layer = nn.TransformerEncoderLayer(d_model=fc1_units, nhead=2, dim_feedforward=32)
         self.encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=2)
         self.fc2 = nn.Linear(fc1_units, fc2_units)
-        self.fc3 = nn.Linear(fc2_units, action_size) 
+        self.fc3 = nn.Linear(fc2_units, action_size)
 
         self.reset_parameters()
 
@@ -64,7 +64,7 @@ class Actor(nn.Module):
     def forward(self, state):
         """Build an actor (policy) network that maps states -> actions."""
         x = state.unsqueeze(0)
-        x = self.pos_encoder(x)
+        # x = self.pos_encoder(x)
         x = self.fc1(x)
         out = self.encoder(x)
         out = F.relu(self.fc2(out))

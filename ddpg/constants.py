@@ -1,4 +1,4 @@
-BUFFER_SIZE = 10        # Replay buffer size
+BUFFER_SIZE = 100        # Replay buffer size
 BATCH_SIZE = 10         # Minibatch size
 GAMMA = 0.95             # Discount factor
 TAU = 1e-2              # For soft update of target parameters
