@@ -33,7 +33,7 @@ class ReinforceModel:
         : Loss function used for each individual agent
     """
 
-    def __init__(self, initial_population, state_size, action_size):
+    def __init__(self, initial_population, state_size, action_size, from_model=None):
         """
         Initializer for ReinforceModel class
         Params
@@ -57,9 +57,9 @@ class ReinforceModel:
         self.policy_loss = {}
 
         # Initialize agents
-        self.init(initial_population)
+        self.init(initial_population, from_model)
 
-    def init(self, initial_population):
+    def init(self, initial_population, from_model=None):
         """
         Initialize agents
         Params
@@ -74,6 +74,9 @@ class ReinforceModel:
             self.agents.append(
                 Agent(self.state_size, self.action_size, self.device).to(self.device)
             )
+
+            if from_model != None:
+                self.agents[-1].load_state_dict(torch.load(from_model))
 
             # Create optimizer for the agent
             self.optimizers.append(optim.Adam(self.agents[-1].parameters(), lr=1e-3))
