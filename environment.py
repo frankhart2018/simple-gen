@@ -35,7 +35,12 @@ class Environment:
                 elif self.boxes[i][j] == self.food:
                     print("\033[91mF\033[m", end=" ")
                 else:
-                    print("O", end=" ")
+                    distance = (abs(i - self.current_pos.rownum) + (abs(j - self.current_pos.colnum)))
+
+                    if distance <= self.scope:
+                        print("\033[96mO\033[m", end=" ")
+                    else:
+                        print("O", end=" ")
             print()
         print()
 
