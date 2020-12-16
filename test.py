@@ -58,5 +58,4 @@ if __name__ == "__main__":
         if success:
             success_count += 1
 
-        # clear()
         print(f"\rSuccess ratio: {success_count/num_experiments}")
