@@ -1,18 +1,31 @@
 # Experiment 1
 
 **Number of agents**: 1
+<br><br>
 **Number of food particle(s)**: 1
+<br><br>
 **World Size**: 16 x 16
+<br><br>
 **State Size**: 8
+<br><br>
 **Action Size**: 4
+<br><br>
 **Algorithm**: REINFORCE
+<br><br>
 **NN**: 2 Layer FC [8 -> 16 (ReLU) -> 4 (Softmax)]
+<br><br>
 **Optimizer**: Adam (LR=1e-2)
+<br><br>
 **Model Updates**: At the end of episode
+<br><br>
 **Starting position of Agent**: Random 
+<br><br>
 **Position of food particle(s)**: Random
+<br><br>
 **Agent Representation**: X (Indigo)
+<br><br>
 **Food Representation**: F (Red)
+<br><br>
 **Cell Representation**: O (Green)
 
 ## State Description
@@ -35,8 +48,12 @@ The agent can take **four** different actions:-
 ## Results
 
 **Number of training episodes**: 5000
+<br><br>
 **Maximum number of steps**: 100
+<br><br>
 **Number of testing episodes**: 5000
+<br><br>
 **Training success ratio**: 0.8504
+<br><br>
 **Testing success ratio**: 1.0
 
