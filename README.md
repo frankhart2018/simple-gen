@@ -34,7 +34,7 @@ The state is the distance of the food particle from the agent when it moves one 
 
 ![State](images/state.png)
 
-In this position the state [2, 2, 4, 4, 1, 3, 3, 5] which corresponds to the Manhattan Distance when the agent moves one position to N, E, S, W, NE, NW, SE, SW direction respectively.
+In this position the state is [2, 2, 4, 4, 1, 3, 3, 5] which corresponds to the Manhattan Distance when the agent moves one position to N, E, S, W, NE, NW, SE, SW direction respectively.
 
 ## Actions
 
