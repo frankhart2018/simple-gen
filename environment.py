@@ -71,6 +71,8 @@ class Environment:
             direction_y = 1 if distance_y > 0 else -1 if distance_y < 0 else 0
 
             states = [distance_x, distance_y, direction_x, direction_y]
+        else:
+            states = [0] * 4
 
         return np.array(states)
 
