@@ -26,7 +26,7 @@
 <br><br>
 **Food Representation**: F (Red)
 <br><br>
-**Cell Representation**: O (Green)
+**Cell Representation**: O (None)
 
 ## State Description
 

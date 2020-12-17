@@ -28,7 +28,7 @@
 <br><br>
 **Food Representation**: F (Red)
 <br><br>
-**Cell Representation when not in scope**: O (Green)
+**Cell Representation when not in scope**: O (None)
 <br><br>
 **Cell Representation when in scope**: O (Light Blue)
 

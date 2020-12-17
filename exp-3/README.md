@@ -8,13 +8,13 @@
 <br><br>
 **Scope**: 10
 <br><br>
-**State Size**: 4
+**State Size**: 2
 <br><br>
 **Action Size**: 4
 <br><br>
 **Algorithm**: REINFORCE
 <br><br>
-**NN**: 2 Layer FC [4 -> 16 (ReLU) -> 4 (Softmax)]
+**NN**: 2 Layer FC [2 -> 16 (ReLU) -> 4 (Softmax)]
 <br><br>
 **Optimizer**: Adam (LR=1e-2)
 <br><br>
@@ -28,7 +28,7 @@
 <br><br>
 **Food Representation**: F (Red)
 <br><br>
-**Cell Representation when not in scope**: O (Green)
+**Cell Representation when not in scope**: O (None)
 <br><br>
 **Cell Representation when in scope**: O (Light Blue)
 
@@ -38,7 +38,7 @@ Distance to which an agent can perceive the world. Distance here is Manhattan Di
 
 ## State Description
 
-The state consists of four zeroes if food particle is outside scope, otherwise it consists of the distance vector (x, y) to the food particle and a direction vector which points towards the direction of the food particle.
+The state consists of two zeroes if food particle is outside scope, otherwise it consists of the distance vector (x, y) to the food particle.
 
 ![State](images/state.png)
 
@@ -61,7 +61,7 @@ The agent can take **four** different actions:-
 <br><br>
 **Number of testing episodes**: 5000
 <br><br>
-**Training success ratio**: 0.7962
+**Training success ratio**: 0.7434
 <br><br>
-**Testing success ratio**: 0.794
+**Testing success ratio**: 0.7606
 

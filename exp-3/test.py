@@ -26,6 +26,7 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             break
 
         state = env.get_state()
+        print(state)
         action, _ = model.predict_action(0, state)
 
         reward = 0
@@ -54,7 +55,7 @@ if __name__ == "__main__":
 
     success_count = 0
     for i in range(num_experiments):
-        success = test(max_steps=100, speed=0.1, render=True)
+        success = test(max_steps=100, speed=100, render=True)
         if success:
             success_count += 1
 
