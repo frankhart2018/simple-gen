@@ -1,4 +1,4 @@
-# Experiment 5
+# Experiment 6
 
 **Number of agents**: 1
 <br><br>
@@ -32,6 +32,10 @@
 <br><br>
 **Cell Representation when in scope**: O (Light Blue)
 
+## Solving the environment
+
+The environment is solved when the agent eats both the food partcles.
+
 ## Scope 
 
 Distance to which an agent can perceive the world. Distance here is Manhattan Distance.
@@ -61,7 +65,7 @@ The agent can take **four** different actions:-
 <br><br>
 **Number of testing episodes**: 5000
 <br><br>
-**Training success ratio**: 0.8336
+**Training success ratio**: 0.6628
 <br><br>
-**Testing success ratio**: 0.9512
+**Testing success ratio**: 0.7388
 
