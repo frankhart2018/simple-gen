@@ -2,7 +2,7 @@
 
 **Number of agents**: 1
 <br><br>
-**Number of food particle(s)**: 1
+**Number of food particle(s)**: 2
 <br><br>
 **World Size**: 16 x 16
 <br><br>
