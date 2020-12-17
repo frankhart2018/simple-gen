@@ -28,6 +28,10 @@
 <br><br>
 **Cell Representation**: O (None)
 
+## Solving the environment
+
+The environment is solved when the agent eats the food partcle.
+
 ## State Description
 
 The state is the distance of the food particle from the agent when it moves one place in 8 directions (N, E, S, W, NE, NW, SE, SW in order).

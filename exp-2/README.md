@@ -32,6 +32,10 @@
 <br><br>
 **Cell Representation when in scope**: O (Light Blue)
 
+## Solving the environment
+
+The environment is solved when the agent eats the food partcle.
+
 ## Scope 
 
 Distance to which an agent can perceive the world. Distance here is Manhattan Distance.
