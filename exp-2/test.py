@@ -26,7 +26,6 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             break
 
         state = env.get_state()
-        print(state)
         action, _ = model.predict_action(0, state)
 
         reward = 0
