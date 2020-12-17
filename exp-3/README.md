@@ -1,4 +1,4 @@
-# Experiment 2
+# Experiment 3
 
 **Number of agents**: 1
 <br><br>
