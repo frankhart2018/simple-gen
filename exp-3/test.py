@@ -7,7 +7,7 @@ from environment import Environment
 from reinforce.model import ReinforceModel
 
 model = ReinforceModel(initial_population=1, state_size=2, action_size=4)
-model.agents[0].load_state_dict(torch.load('experiment-2-5k.pth'))
+model.agents[0].load_state_dict(torch.load('experiment-3-5k.pth'))
 
 def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
     env = Environment(rows=16, cols=16, scope=10)
@@ -26,7 +26,6 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             break
 
         state = env.get_state()
-        print(state)
         action, _ = model.predict_action(0, state)
 
         reward = 0
