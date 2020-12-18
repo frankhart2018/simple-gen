@@ -54,4 +54,4 @@ if __name__ == "__main__":
     clear = lambda: os.system('clear')
 
     for i in range(num_experiments):
-        success = test(max_steps=100, speed=0.05, render=True)
+        success = test(max_steps=250, speed=0.05, render=True)

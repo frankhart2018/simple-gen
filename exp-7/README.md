@@ -2,19 +2,19 @@
 
 **Number of agents**: 1
 <br><br>
-**Number of food particle(s)**: 2
+**Number of food particle(s)**: 5
 <br><br>
 **World Size**: 16 x 16
 <br><br>
 **Scope**: 10
 <br><br>
-**State Size**: 4
+**State Size**: 10
 <br><br>
 **Action Size**: 4
 <br><br>
 **Algorithm**: REINFORCE
 <br><br>
-**NN**: 2 Layer FC [4 -> 16 (ReLU) -> 4 (Softmax)]
+**NN**: 2 Layer FC [10 -> 16 (ReLU) -> 4 (Softmax)]
 <br><br>
 **Optimizer**: Adam (LR=1e-2)
 <br><br>
@@ -34,7 +34,7 @@
 
 ## Solving the environment
 
-The environment is solved when the agent eats both the food partcles.
+There is no condition for the environment to be considered solved.
 
 ## Scope 
 
@@ -42,11 +42,11 @@ Distance to which an agent can perceive the world. Distance here is Manhattan Di
 
 ## State Description
 
-The state consists of 4 zeroes if food particle is outside scope, otherwise it consists of the distance vector (x, y) to both the food particles.
+The state consists of 10 zeroes if food particle is outside scope, otherwise it consists of the distance vector (x, y) to all the food particles.
 
 ![State](images/state.png)
 
-In this position the state is [0, -3, 0, 0] which corresponds to the distance in x, y, and direction in x, y towards the food particle.
+In this position the state is [-1, -1, -6, 0, 0, 0, 1, -1, 5, -2] which corresponds to the distance in x, y, to the food particles.
 
 ## Actions
 
@@ -65,7 +65,7 @@ The agent can take **four** different actions:-
 <br><br>
 **Number of testing episodes**: 5000
 <br><br>
-**Training success ratio**: 0.6628
+**Training success ratio**: Does not apply
 <br><br>
-**Testing success ratio**: 0.7388
+**Testing success ratio**: Does not apply
 

@@ -46,7 +46,7 @@ The state consists of 4 zeroes if food particle is outside scope, otherwise it c
 
 ![State](images/state.png)
 
-In this position the state is [1, -2, -5, 2] which corresponds to the distance in x, y, and direction in x, y towards the food particle.
+In this position the state is [1, -2, -5, 2] which corresponds to the distance in x, y, to the food particles.
 
 ## Actions
 
