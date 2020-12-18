@@ -6,8 +6,8 @@ import os
 from environment import Environment
 from reinforce.model import ReinforceModel
 
-model = ReinforceModel(initial_population=1, state_size=4, action_size=4)
-model.agents[0].load_state_dict(torch.load('experiment-6-5k.pth'))
+model = ReinforceModel(initial_population=1, state_size=10, action_size=4)
+model.agents[0].load_state_dict(torch.load('experiment-7-5k.pth'))
 
 def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
     env = Environment(rows=16, cols=16, scope=10)
@@ -21,12 +21,12 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
     i = 0
     success = True
     while (not env.is_done()):
-        if i == max_steps:
+        print(f"Step: {i+1}")
+        if i == max_steps or env.num_food == 0:
             success = False
             break
 
         state = env.get_state()
-        print(state)
         action, _ = model.predict_action(0, state)
 
         reward = 0
@@ -53,10 +53,5 @@ if __name__ == "__main__":
 
     clear = lambda: os.system('clear')
 
-    success_count = 0
     for i in range(num_experiments):
-        success = test(max_steps=100, speed=0.1, render=True)
-        if success:
-            success_count += 1
-
-        print(f"\rSuccess ratio: {success_count/num_experiments}")
+        success = test(max_steps=100, speed=0.05, render=True)
