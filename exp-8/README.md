@@ -1,8 +1,8 @@
-# Experiment 6
+# Experiment 8
 
 **Number of agents**: 1
 <br><br>
-**Number of food particle(s)**: 5
+**Number of food particle(s)**: Initially 5, but keeps regenerating once consumed
 <br><br>
 **World Size**: 16 x 16
 <br><br>
@@ -46,7 +46,7 @@ The state consists of 10 zeroes if food particle is outside scope, otherwise it 
 
 ![State](images/state.png)
 
-In this position the state is [-1, -1, -6, 0, 0, 0, 1, -1, 5, -2] which corresponds to the distance in x, y, to the food particles.
+In this position the state is [7, 0, -3, 5, 0, 0, 0, 0, 0, 0] which corresponds to the distance in x, y, to the food particles.
 
 ## Actions
 
@@ -68,4 +68,6 @@ The agent can take **four** different actions:-
 **Training success ratio**: Does not apply
 <br><br>
 **Testing success ratio**: Does not apply
+<br><br>
+**Maximum food consumed at test**: 32
 

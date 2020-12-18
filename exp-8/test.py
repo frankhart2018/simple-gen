@@ -27,6 +27,7 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             break
 
         state = env.get_state()
+        print(state)
         action, _ = model.predict_action(0, state)
 
         reward = 0
@@ -55,7 +56,7 @@ if __name__ == "__main__":
 
     best_consumed_count = 0
     for i in range(num_experiments):
-        success, consumed_count = test(max_steps=250, speed=0, render=False)
+        success, consumed_count = test(max_steps=250, speed=0, render=True)
         
         if consumed_count > best_consumed_count:
             best_consumed_count = consumed_count
