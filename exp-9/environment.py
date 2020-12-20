@@ -102,9 +102,9 @@ class Environment:
             distance = abs(distance_x) + abs(distance_y)
 
             if distance < self.scope:
-                states += [distance_x, distance_y, abs(distance_x) + abs(distance_y)]
+                states += [distance_x, distance_y]
             else:
-                states += [0] * 3
+                states += [0] * 2
        
         if len(states) < self.max_pad:
            states = self.pad_state(states)
