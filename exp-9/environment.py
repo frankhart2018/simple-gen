@@ -61,22 +61,22 @@ class Environment:
     def move_up(self):
         if self.current_pos.rownum > 0:
             self.current_pos.rownum -= 1
-        return 0.5 if self.pos_is_food(self.current_pos) else 0
+        return 0.1 if self.pos_is_food(self.current_pos) else 0
 
     def move_down(self):
         if self.current_pos.rownum < self.rows - 1:
             self.current_pos.rownum += 1
-        return 0.5 if self.pos_is_food(self.current_pos) else 0
+        return 0.1 if self.pos_is_food(self.current_pos) else 0
 
     def move_left(self):
         if self.current_pos.colnum > 0:
             self.current_pos.colnum -= 1
-        return 0.5 if self.pos_is_food(self.current_pos) else 0
+        return 0.1 if self.pos_is_food(self.current_pos) else 0
     
     def move_right(self):
         if self.current_pos.colnum < self.cols - 1:
             self.current_pos.colnum += 1
-        return 0.5 if self.pos_is_food(self.current_pos) else 0
+        return 0.1 if self.pos_is_food(self.current_pos) else 0
 
     def ingest(self):
         is_food, food_idx = self.pos_is_food(self.current_pos, return_idx=True)
@@ -85,7 +85,7 @@ class Environment:
             del self.foods[food_idx]
             self.foods.append(self.pos(random.randint(0, self.rows - 1), random.randint(0, self.cols - 1)))
 
-        return 0.1 if is_food else 0
+        return 0.5 if is_food else 0
 
     def pad_state(self, state):
         for i in range(self.max_pad - len(state)):
@@ -99,12 +99,14 @@ class Environment:
         for food in self.foods:
             distance_x = self.current_pos.rownum - food.rownum
             distance_y = self.current_pos.colnum - food.colnum
+            direction_x = 1 if distance_x > 0 else -1 if distance_x < 1 else 0
+            direction_y = 1 if distance_y > 0 else -1 if distance_y < 1 else 0
             distance = abs(distance_x) + abs(distance_y)
 
             if distance < self.scope:
-                states += [distance_x, distance_y]
+                states += [abs(distance_x), abs(distance_y), direction_x, direction_y]
             else:
-                states += [0] * 2
+                states += [-1] * 4
        
         if len(states) < self.max_pad:
            states = self.pad_state(states)

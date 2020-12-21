@@ -5,7 +5,7 @@ import torch
 import torch.optim as optim
 
 # Import the NN
-from .agent import Agent
+from .agent import Agent, Ingestion
 
 
 class ReinforceModel:
@@ -50,16 +50,20 @@ class ReinforceModel:
         self.action_size = action_size
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.agents = []
+        self.ingestions = []
         self.optimizers = []
-        self.scores = []
+        self.ingestion_optimizers = []
         self.saved_log_probs = {}
         self.rewards = {}
         self.policy_loss = {}
+        self.ingestion_saved_log_probs = {}
+        self.ingestion_rewards = {}
+        self.ingestion_policy_loss = {}
 
         # Initialize agents
         self.init(initial_population, from_model)
 
-    def init(self, initial_population, from_model=None):
+    def init(self, initial_population, from_model=None, from_ingestion_model=None):
         """
         Initialize agents
         Params
@@ -75,19 +79,28 @@ class ReinforceModel:
                 Agent(self.state_size, self.action_size, self.device).to(self.device)
             )
 
+            self.ingestions.append(
+                Ingestion(self.state_size, self.device).to(self.device)
+            )
+
             if from_model != None:
                 self.agents[-1].load_state_dict(torch.load(from_model))
+            
+            if from_ingestion_model != None:
+                self.ingestions[-1].load_state_dict(torch.load(from_ingestion_model))
 
             # Create optimizer for the agent
             self.optimizers.append(optim.Adam(self.agents[-1].parameters(), lr=1e-3))
-
-            # Initialize each agents score with 0
-            self.scores.append(0)
+            self.ingestion_optimizers.append(optim.Adam(self.ingestions[-1].parameters(), lr=1e-3))
 
             # Create entries for each agent in log_probs, loss, and rewards dict
             self.saved_log_probs[idx] = []
             self.policy_loss[idx] = []
             self.rewards[idx] = []
+
+            self.ingestion_saved_log_probs[idx] = []
+            self.ingestion_policy_loss[idx] = []
+            self.ingestion_rewards[idx] = []
 
     def predict_action(self, idx, state):
         """
@@ -112,6 +125,13 @@ class ReinforceModel:
 
         return action, embed
 
+    def predict_ingestion(self, idx, state):
+
+        action, log_prob = self.ingestions[-1].act(state)
+        self.ingestion_saved_log_probs[idx].append(log_prob)
+
+        return action
+
     def update_reward(self, idx, reward):
         """
         Update reward of an agent
@@ -125,6 +145,9 @@ class ReinforceModel:
 
         # Append the current reward to rewards list for this agent
         self.rewards[idx].append(reward)
+
+    def update_ingestion_reward(self, idx, reward):
+        self.ingestion_rewards[idx].append(reward)
 
     def update_single_agent(self, idx):
         """
