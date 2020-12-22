@@ -39,6 +39,8 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             reward = env.move_left()
         elif action == 3:
             reward = env.move_right()
+        elif action == 4:
+            reward = env.ingest()
 
         if render:
             env.render()

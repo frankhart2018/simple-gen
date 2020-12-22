@@ -61,22 +61,22 @@ class Environment:
     def move_up(self):
         if self.current_pos.rownum > 0:
             self.current_pos.rownum -= 1
-        return 0.1 if self.pos_is_food(self.current_pos) else 0
+        return 0.5 if self.pos_is_food(self.current_pos) else 0
 
     def move_down(self):
         if self.current_pos.rownum < self.rows - 1:
             self.current_pos.rownum += 1
-        return 0.1 if self.pos_is_food(self.current_pos) else 0
+        return 0.5 if self.pos_is_food(self.current_pos) else 0
 
     def move_left(self):
         if self.current_pos.colnum > 0:
             self.current_pos.colnum -= 1
-        return 0.1 if self.pos_is_food(self.current_pos) else 0
+        return 0.5 if self.pos_is_food(self.current_pos) else 0
     
     def move_right(self):
         if self.current_pos.colnum < self.cols - 1:
             self.current_pos.colnum += 1
-        return 0.1 if self.pos_is_food(self.current_pos) else 0
+        return 0.5 if self.pos_is_food(self.current_pos) else 0
 
     def ingest(self):
         is_food, food_idx = self.pos_is_food(self.current_pos, return_idx=True)
@@ -85,7 +85,7 @@ class Environment:
             del self.foods[food_idx]
             self.foods.append(self.pos(random.randint(0, self.rows - 1), random.randint(0, self.cols - 1)))
 
-        return 0.5 if is_food else 0
+        return 1 if is_food else 0
 
     def pad_state(self, state):
         for i in range(self.max_pad - len(state)):

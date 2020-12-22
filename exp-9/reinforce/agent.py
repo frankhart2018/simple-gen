@@ -20,7 +20,7 @@ class Agent(nn.Module):
         : Second dense (output) layer of NN
     """
 
-    def __init__(self, s_size, a_size, device, h_size=32):
+    def __init__(self, s_size, a_size, device, h_size=64):
         """
         Initializer for Agent class
         Params
