@@ -6,7 +6,7 @@ import torch.optim as optim
 import numpy as np
 
 # Import the NN
-from .agent import Agent, Ingestion
+from .agent import Agent
 
 
 class ReinforceModel:
