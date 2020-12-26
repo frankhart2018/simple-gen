@@ -39,7 +39,7 @@ class Agent(nn.Module):
         self.device = device
 
         self.fc1 = nn.Linear(s_size, h_size)
-        self.fc2 = nn.Linear(h_size, a_size-1)
+        self.fc2 = nn.Linear(h_size, a_size)
 
     def forward(self, x):
         """
