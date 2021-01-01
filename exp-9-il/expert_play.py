@@ -1,4 +1,5 @@
 import numpy as np
+import getch
 import time
 
 from environment import Environment
@@ -17,7 +18,7 @@ while current_move_num < num_moves:
     env.render(blind_mode=True)
 
     state = env.get_state()
-    action = input(f"Action [{current_move_num + 1}/{num_moves}]: ")
+    action = getch.getch()
     
     if action in action_to_action_num.keys():
         states_actions.append([state, action_char_to_num[action]])
@@ -26,6 +27,8 @@ while current_move_num < num_moves:
         current_move_num += 1
     else:
         print(f"Invalid move {action}")
+
+getch.getch()
 
 states_actions = np.asarray(states_actions, dtype=object)
 np.save(str(int(time.time())) + ".npy", states_actions)
