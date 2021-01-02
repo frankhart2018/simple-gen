@@ -6,7 +6,7 @@ from environment import Environment
 
 env = Environment(rows=16, cols=16, scope=10)
 
-num_moves = 2
+num_moves = 250
 current_move_num = 0
 
 states_actions = []
