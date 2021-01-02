@@ -32,4 +32,9 @@ while current_move_num < num_moves:
 getch.getch()
 
 states_actions = np.asarray(states_actions, dtype=object)
-np.save(os.path.join("expert-data/", str(int(time.time())) + ".npy"), states_actions)
+
+output_dir = "expert-dir"
+if not os.path.exists(output_dir):
+    os.mkdir(output_dir)
+
+np.save(os.path.join(output_dir, str(int(time.time())) + ".npy"), states_actions)
