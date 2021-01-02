@@ -1,5 +1,6 @@
 import numpy as np
 import getch
+import os
 import time
 
 from environment import Environment
@@ -31,4 +32,4 @@ while current_move_num < num_moves:
 getch.getch()
 
 states_actions = np.asarray(states_actions, dtype=object)
-np.save(str(int(time.time())) + ".npy", states_actions)
+np.save(os.path.join("expert-data/", str(int(time.time())) + ".npy"), states_actions)
