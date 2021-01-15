@@ -9,10 +9,18 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 
+import argparse
+
 from gail.model import GAIL
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--h_size", default=64)
+
+args = parser.parse_args()
 
 ENVIRONMENT_SIZE = 16
 BATCH_SIZE = 32
+HIDDEN_SIZE = int(args.h_size)
 
 class BCDataset(Dataset):
     
@@ -48,7 +56,7 @@ training_dataloader = DataLoader(training_dataset, batch_size=BATCH_SIZE, shuffl
 STATE_SIZE = 20
 ACTION_SIZE = 5
 
-model = GAIL(s_size=STATE_SIZE, a_size=ACTION_SIZE, batch_size=BATCH_SIZE)
+model = GAIL(s_size=STATE_SIZE, a_size=ACTION_SIZE, h_size=HIDDEN_SIZE, batch_size=BATCH_SIZE)
 
 from tqdm import tqdm, trange
 

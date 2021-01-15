@@ -12,12 +12,12 @@ from .nn import Actor, Discriminator
 
 class GAIL:
 
-    def __init__(self, s_size, a_size, device=torch.device('cpu'), h_size=64, batch_size=32):
+    def __init__(self, s_size, a_size, h_size=64, batch_size=32):
         self.s_size = s_size
         self.a_size = a_size
         self.h_size = h_size
         self.batch_size = batch_size
-        self.device = device
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         self.actor = Actor(s_size=s_size, a_size=a_size, h_size=h_size, device=self.device).to(self.device)
         self.discriminator = Discriminator(s_size=s_size, a_size=a_size, h_size=h_size, device=self.device).to(self.device)
