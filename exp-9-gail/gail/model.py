@@ -42,14 +42,14 @@ class GAIL:
         # Discriminator backprop
         self.discriminator_optim.zero_grad()
 
-        state = state.float().to(device)
-        expert_actions = expert_actions.float().to(device)
+        state = state.float().to(self.device)
+        expert_actions = expert_actions.float().to(self.device)
 
         actor_action = self.forward_pass(state)
         actor_action = actor_action.unsqueeze(1)
 
-        expert_label = torch.full((len(state), 1), 1)
-        actor_label = torch.full((len(state), 1), 0)
+        expert_label = torch.full((len(state), 1), 1, device=self.device)
+        actor_label = torch.full((len(state), 1), 0, device=self.device)
 
    
         expert_probability = self.forward_discrimination(state, expert_actions)
