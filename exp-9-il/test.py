@@ -5,9 +5,11 @@ import os
 
 from environment import Environment
 from reinforce.model import ReinforceModel
+from heuristic_bot import HeuristicBot
 
-model = ReinforceModel(initial_population=1, state_size=20, action_size=5)
-model.agents[0].load_state_dict(torch.load('experiment-9-25k.pth'))
+# model = ReinforceModel(initial_population=1, state_size=20, action_size=5)
+# model.agents[0].load_state_dict(torch.load('experiment-9-25k.pth'))
+bot = HeuristicBot()
 
 def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
     env = Environment(rows=16, cols=16, scope=10)
@@ -27,7 +29,8 @@ def test(max_steps, speed=0.5, agent_pos=None, food_pos=None, render=True):
             break
 
         state = env.get_state()
-        action, _ = model.predict_action(0, state)
+        # action, _ = model.predict_action(0, state)
+        action = bot.predict_action(state, env.current_pos.rownum, env.current_pos.colnum)
 
         reward = 0
         if action == 0:
@@ -55,11 +58,13 @@ if __name__ == "__main__":
 
     clear = lambda: os.system('clear')
 
-    best_consumed_count = 0
-    for i in range(num_experiments):
-        success, consumed_count = test(max_steps=250, speed=0.1, render=True)
-        
-        if consumed_count > best_consumed_count:
-            best_consumed_count = consumed_count
+    success, consumed_count = test(max_steps=250, speed=0.5, render=True)
 
-    print("Maximum number of food consumed:", best_consumed_count)
+    # best_consumed_count = 0
+    # for i in range(num_experiments):
+    #     success, consumed_count = test(max_steps=250, speed=0.1, render=True)
+        
+    #     if consumed_count > best_consumed_count:
+    #         best_consumed_count = consumed_count
+
+    # print("Maximum number of food consumed:", best_consumed_count)
